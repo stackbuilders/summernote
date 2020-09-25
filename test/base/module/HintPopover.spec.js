@@ -95,8 +95,8 @@ describe('HintPopover', () => {
       editor.insertText(' #');
       $editable.keyup();
 
-      var spy = chai.spy();
-      $note.on('summernote.change', spy);
+      var onChange = chai.spy();
+      $note.on('summernote.change', onChange);
 
       setTimeout(() => {
         var e = $.Event('keydown');
@@ -105,7 +105,7 @@ describe('HintPopover', () => {
 
         setTimeout(() => {
           expectContents(context, '<p>hello #jayden world</p>');
-          expect(spy).to.have.been.called.once;
+          expect(onChange).to.have.been.called.once;
           done();
         }, 10);
       }, 10);
